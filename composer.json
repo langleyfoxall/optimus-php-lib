@@ -1,0 +1,19 @@
+{
+    "name": "optimus/php-lib",
+    "authors": [
+        {
+            "name": "Dexter Marks-Barber",
+            "email": "dexter@marks-barber.co.uk"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "guzzlehttp/guzzle": "^6.5",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Optimus\\": "src/"
+        }
+    }
+}
