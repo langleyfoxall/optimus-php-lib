@@ -54,4 +54,4 @@ Expected response:
 }
 ```
 <br>
-<sup><code><...></code> hides the service base URI</sup>
+<sup>Note: <code><...></code> hides the service base URI</sup>
