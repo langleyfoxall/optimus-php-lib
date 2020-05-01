@@ -19,24 +19,24 @@
 #### Table of contents
 
 * API
-  * [Categories](/docs/api/categories.md)
-    * [List](/docs/api/categories/list.md)
-    * [Details](/docs/api/categories/details.md)
-  * [Products](/docs/api/products.md)
-    * [List](/docs/api/products/list.md)
-    * [Details](/docs/api/products/details.md)
-  * [Enquiries](/docs/api/enquiries.md)
-    * [Create](/docs/api/enquiries/create.md)
-    * [Details](/docs/api/enquiries/details.md)
+  * [Categories](./docs/api/categories.md)
+    * [List](./docs/api/categories/list.md)
+    * [Details](./docs/api/categories/details.md)
+  * [Products](./docs/api/products.md)
+    * [List](./docs/api/products/list.md)
+    * [Details](./docs/api/products/details.md)
+  * [Enquiries](./docs/api/enquiries.md)
+    * [Create](./docs/api/enquiries/create.md)
+    * [Details](./docs/api/enquiries/details.md)
+
+<br />
+
 * Lib
-  * Actions
-    * List
-    * Details
-    * Create
-  * Entities
-    * Categories
-      * Subcategories
-    * Products
-      * Media
-      * Pricing
-    * Enquiries
+  * [Actions](./docs/lib/actions.md)
+    * [List](./docs/lib/actions/list.md)
+    * [Details](./docs/lib/actions/details.md)
+    * [Create](./docs/lib/actions/create.md)
+  * [Entities](./docs/lib/entities.md)
+    * [Categories](./docs/lib/entities/categories.md)
+    * [Products](./docs/lib/entities/products.md)
+    * [Enquiries](./docs/lib/entities/enquiries.md)
