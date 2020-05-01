@@ -2,8 +2,6 @@
 
 namespace Optimus\Entities;
 
-use Optimus\AbstractEntity;
-
 /**
  * @see Product
  * @property-read string $thumbnail

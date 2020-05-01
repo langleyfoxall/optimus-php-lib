@@ -1,11 +1,12 @@
 <?php
 
-namespace Optimus;
+namespace Optimus\Entities;
 
 use Optimus\Constants\EndpointType;
 use Optimus\Exceptions\NotSupportedException;
 use Optimus\Exceptions\UnexpectedDataException;
 use Optimus\Helpers\Arr;
+use Optimus\Http\Request;
 
 abstract class AbstractEntity
 {
@@ -167,18 +168,20 @@ abstract class AbstractEntity
      * Get all entities.
      *
      * @param string $query
+     * @param int    $after
      * @param int    $page
      * @return array|AbstractEntity[]
      * @throws NotSupportedException
      * @throws UnexpectedDataException
      */
-    public static function all(string $query = null, int $page = 1)
+    public static function all(string $query = null, int $after = null, int $page = 1)
     {
         $endpoint = static::endpoint(EndpointType::LIST);
         $request = new Request;
 
         $request->endpoint($endpoint);
         $request->search($query);
+        $request->filter(compact('after'));
         $request->page($page);
 
         $response = $request->load();

@@ -1,7 +1,8 @@
 <?php
 
-namespace Optimus;
+namespace Optimus\Http;
 
+use Optimus\Entities\AbstractEntity;
 use Optimus\Exceptions\UnexpectedDataException;
 use Optimus\Helpers\Arr;
 use Psr\Http\Message\ResponseInterface;

@@ -1,8 +1,11 @@
 <?php
 
-namespace Optimus;
+namespace Optimus\Http;
 
 use GuzzleHttp\Client;
+use Optimus\Entities\AbstractEntity;
+use Optimus\Exceptions\EnvironmentVariableNotSetException;
+use Optimus\Helpers\Env;
 use Optimus\Helpers\File;
 
 class Request
@@ -22,9 +25,31 @@ class Request
     /** @var string $search */
     protected $search;
 
+    /**
+     * @throws EnvironmentVariableNotSetException
+     */
     public function __construct()
     {
         $this->handler = new Client;
+
+        $this->bootstrap();
+    }
+
+    /**
+     * Prepare request.
+     *
+     * @throws EnvironmentVariableNotSetException
+     * @return void
+     */
+    protected function bootstrap()
+    {
+        if (empty(Env::getBaseUri())) {
+            throw new EnvironmentVariableNotSetException('The base URI is not set. Use Env::setBaseUri to set it.');
+        }
+
+        if (empty(Env::getToken())) {
+            throw new EnvironmentVariableNotSetException('The token is not set. Use Env::setToken to set it.');
+        }
     }
 
     /**
@@ -160,9 +185,19 @@ class Request
     protected function url()
     {
         $endpoint = $this->endpoint;
+
+        // Add prefix
         $endpoint = strpos($endpoint, '/') !== 0 ? '/' . $endpoint : $endpoint;
 
-        return 'http://optimus-laravel.loc/api' . $endpoint;
+        $baseUri = Env::getBaseUri();
+
+        // Strip trailing slash
+        $baseUri = substr($baseUri, strlen($baseUri) - 1) === '/' ? substr($baseUri, 0, -1) : $baseUri;
+
+        // Add suffix
+        $baseUri = strpos($baseUri, '/api') !== 0 ? $baseUri . '/api' : $baseUri;
+
+        return $baseUri . $endpoint;
     }
 
     /**
@@ -174,7 +209,7 @@ class Request
     {
         return [
             'accept'        => 'application/json',
-            'authorization' => "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6bnVsbH0.5LYUGGjMbf3O_wqnOd1dQSNL47M0BCnKXNSEz_tJm4Y",
+            'authorization' => Env::getToken(),
         ];
     }
 
@@ -223,7 +258,7 @@ class Request
 
                 /** @var File $value */
                 $tmp[$key] = [
-                    'name' => $key,
+                    'name'     => $key,
                     'contents' => $value->content(),
                     'filename' => $value->filename(),
                 ];

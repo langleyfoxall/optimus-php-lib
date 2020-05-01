@@ -2,11 +2,10 @@
 
 namespace Optimus\Entities;
 
-use Optimus\AbstractEntity;
 use Optimus\Constants\EndpointType;
 use Optimus\Exceptions\NotSupportedException;
 use Optimus\Exceptions\UnexpectedDataException;
-use Optimus\Request;
+use Optimus\Http\Request;
 
 /**
  * @property-read int           $id

@@ -2,7 +2,6 @@
 
 namespace Optimus\Entities;
 
-use Optimus\AbstractEntity;
 use Optimus\Constants\EndpointType;
 
 class Enquiry extends AbstractEntity
