@@ -19,9 +19,9 @@
 When wanting to return details for an item of a given entity
 type you can statically call the `find` method on supported entities:
 
-* [Categories](../categories/details.md)
-* [Products](../products/details.md)
-* [Enquiries](../enquiries/details.md)
+* [Categories](../entities/categories.md)
+* [Products](../entities/products.md)
+* [Enquiries](../entities/enquiries.md)
 
 <br />
 <br />

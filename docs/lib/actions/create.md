@@ -19,7 +19,7 @@
 When wanting to push a new item of a given entity
 type you can statically call the `create` method on supported entities:
 
-* [Enquiries](../enquiries.md)
+* [Enquiries](../entities/enquiries.md)
 
 <br />
 <br />
