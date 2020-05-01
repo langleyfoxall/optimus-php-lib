@@ -19,6 +19,7 @@
 #### Table of contents
 
 * API
+  * [Quick start](./docs/api/quick-start.md)
   * [Categories](./docs/api/categories.md)
     * [List](./docs/api/categories/list.md)
     * [Details](./docs/api/categories/details.md)
@@ -32,6 +33,7 @@
 <br />
 
 * Lib
+  * [Quick start](./docs/lib/quick-start.md)
   * [Actions](./docs/lib/actions.md)
     * [List](./docs/lib/actions/list.md)
     * [Details](./docs/lib/actions/details.md)
@@ -40,3 +42,6 @@
     * [Categories](./docs/lib/entities/categories.md)
     * [Products](./docs/lib/entities/products.md)
     * [Enquiries](./docs/lib/entities/enquiries.md)
+
+<br />
+<br />
