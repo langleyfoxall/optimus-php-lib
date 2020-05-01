@@ -21,7 +21,7 @@ Calling this endpoint will return a list of all available products.
 * Products are paginated into groups of 15 to navigate between pages pass the `page` param with a number.
 * Products can be fuzzy searched by passing the `search` param with a string.
 * Products can be filtered by when they were last updated by passing the `after` param with a timestamp.
-* Categories can be filtered by a category by passing the `category` param with a [category](./categories.md) ID.
+* Categories can be filtered by a category by passing the `category` param with a [category](../categories.md) ID.
 
 Expected response:
 ```json
