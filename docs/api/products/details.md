@@ -97,5 +97,8 @@ Expected response:
   "meta": null
 }
 ```
-<br>
+<br />
 <sup>Note: Not all products will have categories or media.</sup>
+
+<br />
+<br />

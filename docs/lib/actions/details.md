@@ -32,5 +32,8 @@ Expected arguments:
 |------|----------|---------------|------------------------------|
 | `id` | true     | int or string | The ID of the current entity |
 
-<br>
+<br />
 <sup>Note: This method also supports an associative array to pass named IDs. But no entity current requires this.</sup>
+
+<br />
+<br />

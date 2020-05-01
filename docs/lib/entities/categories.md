@@ -60,3 +60,6 @@ When viewing the details of a given category it will sometimes have subcategorie
 Rather than just returning an array of data each subcategory become mutated into an object.
 
 The `Optimus\Entities\Subcategory` object simply extends the category object.
+
+<br />
+<br />

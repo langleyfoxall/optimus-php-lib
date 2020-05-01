@@ -20,3 +20,6 @@
 
 * [List](./categories/list.md)
 * [Details](./categories/details.md)
+
+<br />
+<br />

@@ -53,5 +53,8 @@ Expected response:
   "meta": null
 }
 ```
-<br>
+<br />
 <sup>Note: <code><...></code> hides the service base URI</sup>
+
+<br />
+<br />

@@ -35,5 +35,8 @@ Expected response:
   "meta": null
 }
 ```
-<br>
+<br />
 <sup>Note: Possible status include: <code>open</code>, <code>closed</code>.</sup>
+
+<br />
+<br />

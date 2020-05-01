@@ -44,5 +44,8 @@ Expected response:
   "meta": null
 }
 ```
-<br>
+<br />
 <sup>Note: Not all categories will have subcategories.</sup>
+
+<br />
+<br />

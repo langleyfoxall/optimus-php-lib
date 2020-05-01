@@ -31,3 +31,6 @@ Expected arguments:
 |---------|----------|--------|--------------------------------------------------|
 | `query` | false    | string | A fuzzy search to filter down entities           |
 | `page`  | false    | int    | The page number to load the current results from |
+
+<br />
+<br />

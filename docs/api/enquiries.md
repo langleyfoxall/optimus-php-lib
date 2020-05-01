@@ -20,3 +20,6 @@
 
 * [Create](./enquiries/create.md)
 * [Details](./enquiries/details.md)
+
+<br />
+<br />
