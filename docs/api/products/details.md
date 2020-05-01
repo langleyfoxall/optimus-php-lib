@@ -78,7 +78,7 @@ Expected response:
     "is_eco_product": false,
     "information_eco_qualities": "Assumenda fuga consectetur quam molestiae quae voluptas.",
     "information_print_specification": "Pariatur expedita est ducimus et cumque amet.",
-    "information_web_link": "http:\/\/lloyd.com\/sed-ea-commodi-neque-alias-et-cumque",
+    "information_web_link": "<...>\/sed-ea-commodi-neque-alias-et-cumque",
     "information_web_link_description": "Ullam error qui voluptatem expedita dolores ratione non ea.",
     "information_catalogue_description": "Inventore nobis non consequatur voluptatem mollitia vel.",
     "information_colours": "Error aut modi et magnam non.",

@@ -23,13 +23,13 @@ Calling this endpoint will return the ID of a newly created enquiry.
 
 Expected data:
 
-| Key         | Required | Type     |                                       Description |
-|-------------|----------|----------|--------------------------------------------------:|
-| name        | true     | string   | Name of the person enquiring                      |
-| email       | false    | email    | Email of the person enquiring                     |
-| phone       | false    | string   | Phone number of the person enquiring              |
-| description | true     | longtext | Comments/Description of the enquiry               |
-| product_id  | false    | int      | The ID of a product the person is enquiring about |
+| Key           | Required | Type     |                                       Description |
+|---------------|----------|----------|--------------------------------------------------:|
+| `name`        | true     | string   | Name of the person enquiring                      |
+| `email`       | false    | email    | Email of the person enquiring                     |
+| `phone`       | false    | string   | Phone number of the person enquiring              |
+| `description` | true     | longtext | Comments/Description of the enquiry               |
+| `product_id`  | false    | int      | The ID of a product the person is enquiring about |
 
 <br />
 <br />
