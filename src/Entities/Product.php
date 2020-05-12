@@ -39,7 +39,7 @@ class Product extends AbstractEntity
 {
     /** @var string[] $endpoint */
     protected static $endpoint = [
-        EndpointType::LIST    => '/products',
+        EndpointType::ALL     => '/products',
         EndpointType::DETAILS => '/products/{id}',
     ];
 

@@ -176,7 +176,7 @@ abstract class AbstractEntity
      */
     public static function all($query = null, $after = null, $page = 1)
     {
-        $endpoint = static::endpoint(EndpointType::LIST);
+        $endpoint = static::endpoint(EndpointType::ALL);
         $request = new Request;
 
         $request->endpoint($endpoint);

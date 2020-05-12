@@ -18,7 +18,7 @@ class Category extends AbstractEntity
 {
     /** @var string[] $endpoint */
     protected static $endpoint = [
-        EndpointType::LIST    => '/categories',
+        EndpointType::ALL     => '/categories',
         EndpointType::DETAILS => '/categories/{id}',
     ];
 
