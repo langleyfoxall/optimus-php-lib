@@ -10,7 +10,7 @@ class Arr
      * @param array $array
      * @return bool
      */
-    public static function isNotAssoc$array)
+    public static function isNotAssoc($array)
     {
         return array_keys($array) === range(0, count($array) - 1);
     }

@@ -12,12 +12,16 @@ class Response
     /** @var ResponseInterface $handler */
     protected $handler;
 
+    /** @var string $response */
+    protected $response;
+
     /**
      * @param ResponseInterface $response
      */
     public function __construct(ResponseInterface $response)
     {
         $this->handler = $response;
+        $this->response = $this->handler->getBody()->getContents();
     }
 
     /**
@@ -27,7 +31,7 @@ class Response
      */
     public function response()
     {
-        return json_decode($this->handler->getBody()->getContents(), true);
+        return json_decode($this->response, true);
     }
 
     /**
@@ -39,15 +43,49 @@ class Response
     {
         $response = $this->response();
 
-        if (!array_key_exists('data', $response)) {
+        if (!is_array($response) || !array_key_exists('data', $response)) {
             return null;
         }
 
-        if (is_array($response['data']) && array_key_exists('data', $response['data'])) {
+        if ($this->isPaginated()) {
             return $response['data']['data'];
         }
 
         return $response['data'];
+    }
+
+    /**
+     * Return the current page of the response.
+     *
+     * @return null|int
+     */
+    public function currentPage()
+    {
+        if ($this->isPaginated()) {
+            $response = $this->response();
+            $body = $response['data'];
+
+            return $body['current_page'];
+        }
+
+        return null;
+    }
+
+    /**
+     * Return the last page of the response.
+     *
+     * @return null|int
+     */
+    public function lastPage()
+    {
+        if ($this->isPaginated()) {
+            $response = $this->response();
+            $body = $response['data'];
+
+            return $body['last_page'];
+        }
+
+        return null;
     }
 
     /**
@@ -102,5 +140,23 @@ class Response
         }
 
         return call_user_func_array([$entity, 'make'], [$data]);
+    }
+
+    /**
+     * Check if the response is paginated or not.
+     *
+     * @return bool
+     */
+    protected function isPaginated()
+    {
+        $response = $this->response();
+
+        if (!is_array($response)) {
+            return false;
+        }
+
+        return array_key_exists('data', $response)
+            && is_array($response['data'])
+            && array_key_exists('data', $response['data']);
     }
 }

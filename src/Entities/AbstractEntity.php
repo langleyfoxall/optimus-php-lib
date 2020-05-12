@@ -7,6 +7,7 @@ use Optimus\Exceptions\NotSupportedException;
 use Optimus\Exceptions\UnexpectedDataException;
 use Optimus\Helpers\Arr;
 use Optimus\Http\Request;
+use Optimus\Http\Response;
 
 abstract class AbstractEntity
 {
@@ -18,6 +19,9 @@ abstract class AbstractEntity
 
     /** @var string[] $endpoint */
     protected static $endpoint;
+
+    /** @var string $primaryKey */
+    protected $primaryKey = 'id';
 
     protected function __construct()
     {
@@ -157,7 +161,7 @@ abstract class AbstractEntity
     {
         $entity = new static;
 
-        foreach($data as $attribute => $value) {
+        foreach ($data as $attribute => $value) {
             $entity->{$attribute} = $value;
         }
 
@@ -174,7 +178,41 @@ abstract class AbstractEntity
      * @throws NotSupportedException
      * @throws UnexpectedDataException
      */
-    public static function all($query = null, $after = null, $page = 1)
+    public static function all($query = null, $after = null, $page = 0)
+    {
+        if ($page !== 0) {
+            $response = static::forPage($query, $after, $page);
+
+            return $response->convertToMany(static::class);
+        }
+
+        $page = 1;
+        $lastPage = 2;
+        $out = [];
+
+        while($page <= $lastPage) {
+            $response = static::forPage($query, $after, $page);
+            $lastPage = $response->lastPage();
+
+            $out = array_merge($out, $response->convertToMany(static::class));
+
+            $page++;
+        }
+
+        return $out;
+    }
+
+    /**
+     * Get results for a paginated dataset.
+     *
+     * @param string $query
+     * @param string $after
+     * @param int    $page
+     * @return Response
+     * @throws NotSupportedException
+     * @internal
+     */
+    protected static function forPage($query = null, $after = null, $page = 0)
     {
         $endpoint = static::endpoint(EndpointType::ALL);
         $request = new Request;
@@ -182,11 +220,12 @@ abstract class AbstractEntity
         $request->endpoint($endpoint);
         $request->search($query);
         $request->filter(compact('after'));
-        $request->page($page);
 
-        $response = $request->load();
+        if ($page > 0) {
+            $request->page($page);
+        }
 
-        return $response->convertToMany(static::class);
+        return $request->load();
     }
 
     /**
@@ -226,6 +265,8 @@ abstract class AbstractEntity
     }
 
     /**
+     * Create a entity.
+     *
      * @param array $data
      * @return AbstractEntity
      * @throws NotSupportedException
@@ -243,6 +284,22 @@ abstract class AbstractEntity
         $id = $response->data();
 
         return static::find($id);
+    }
+
+    /**
+     * Refresh the data of an entity.
+     *
+     * @return null|AbstractEntity
+     * @throws NotSupportedException
+     * @throws UnexpectedDataException
+     */
+    public function refresh()
+    {
+        if ($id = $this->{$this->primaryKey}) {
+            return static::find($id);
+        }
+
+        return null;
     }
 
     /**
