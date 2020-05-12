@@ -4,7 +4,7 @@ namespace Optimus\Constants;
 
 class EndpointType
 {
-    const LIST = 'list';
+    const ALL = 'all';
     const DETAILS = 'details';
     const CREATE = 'create';
 }

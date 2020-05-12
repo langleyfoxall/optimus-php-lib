@@ -14,7 +14,7 @@ class File
      * @param string $path
      * @param string $filename
      */
-    public function __construct(string $path, string $filename = null)
+    public function __construct($path, $filename = null)
     {
         $this->path = $path;
         $this->filename = $filename;

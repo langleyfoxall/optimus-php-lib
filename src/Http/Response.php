@@ -57,7 +57,7 @@ class Response
      * @return AbstractEntity
      * @throws UnexpectedDataException
      */
-    public function convertTo(string $entity)
+    public function convertTo($entity)
     {
         return $this->convert($entity, $this->data());
     }
@@ -69,7 +69,7 @@ class Response
      * @return array|AbstractEntity[]
      * @throws UnexpectedDataException
      */
-    public function convertToMany(string $entity)
+    public function convertToMany($entity)
     {
         $data = $this->data();
 
@@ -81,7 +81,7 @@ class Response
             throw new UnexpectedDataException;
         }
 
-        return array_map(function (array $data) use ($entity) {
+        return array_map(function ($data) use ($entity) {
             return $this->convert($entity, $data);
         }, $data);
     }
@@ -95,7 +95,7 @@ class Response
      * @throws UnexpectedDataException
      * @internal
      */
-    protected function convert(string $entity, array $data)
+    protected function convert($entity, $data)
     {
         if (Arr::isNotAssoc($data)) {
             throw new UnexpectedDataException;

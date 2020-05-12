@@ -59,7 +59,7 @@ class Request
      * @return $this
      * @internal
      */
-    public function endpoint(string $endpoint): Request
+    public function endpoint($endpoint)
     {
         $this->endpoint = $endpoint;
 
@@ -73,7 +73,7 @@ class Request
      * @return $this
      * @internal
      */
-    public function page(int $page): Request
+    public function page($page)
     {
         $this->page = $page;
 
@@ -87,7 +87,7 @@ class Request
      * @return $this
      * @internal
      */
-    public function search(string $search = null): Request
+    public function search($search = null)
     {
         $this->search = $search;
 
@@ -100,7 +100,7 @@ class Request
      * @param array $filters
      * @return $this
      */
-    public function filter(array $filters = []): Request
+    public function filter(array $filters = [])
     {
         $this->filters = $filters;
 
@@ -116,7 +116,7 @@ class Request
      * @return Response
      * @internal
      */
-    public function get(string $url, array $query = [], array $headers = [])
+    public function get($url, $query = [], $headers = [])
     {
         $response = $this->handler->get($url, [
             'query'   => $query,
@@ -138,7 +138,7 @@ class Request
      * @return Response
      * @internal
      */
-    public function post(string $url, array $data = [], array $headers = [])
+    public function post($url, $data = [], $headers = [])
     {
         $response = $this->handler->post($url, [
             'multipart' => $this->convertData($data),
@@ -236,7 +236,7 @@ class Request
      * @param string $parent
      * @return array
      */
-    protected function convertData(array $data, string $parent = '')
+    protected function convertData($data, $parent = '')
     {
         $tmp = [];
 

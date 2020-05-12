@@ -23,7 +23,7 @@ final class Env
      *
      * @return Env
      */
-    protected static function make(): Env
+    protected static function make()
     {
         if (is_null(self::$instance)) {
             self::$instance = new self;
@@ -38,7 +38,7 @@ final class Env
      * @param string $baseUri
      * @return void
      */
-    public static function setBaseUri(string $baseUri)
+    public static function setBaseUri($baseUri)
     {
         self::make()->baseUri = $baseUri;
     }
@@ -59,7 +59,7 @@ final class Env
      * @param string $token
      * @return void
      */
-    public static function setToken(string $token)
+    public static function setToken($token)
     {
         self::make()->token = $token;
     }

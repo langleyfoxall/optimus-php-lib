@@ -84,7 +84,7 @@ abstract class AbstractEntity
      * @param mixed  $value
      * @return $this
      */
-    public function setAttribute($name, $value): self
+    public function setAttribute($name, $value)
     {
         $this->data[$name] = $value;
 
@@ -108,7 +108,7 @@ abstract class AbstractEntity
      * @param $value
      * @return $this
      */
-    public function setRelations($name, $value): self
+    public function setRelations($name, $value)
     {
         if (method_exists($this, $name)) {
             $class = $this->{$name}();
@@ -153,7 +153,7 @@ abstract class AbstractEntity
      * @param array $data
      * @return static
      */
-    public static function make(array $data)
+    public static function make($data)
     {
         $entity = new static;
 
@@ -174,7 +174,7 @@ abstract class AbstractEntity
      * @throws NotSupportedException
      * @throws UnexpectedDataException
      */
-    public static function all(string $query = null, int $after = null, int $page = 1)
+    public static function all($query = null, $after = null, $page = 1)
     {
         $endpoint = static::endpoint(EndpointType::LIST);
         $request = new Request;
@@ -231,7 +231,7 @@ abstract class AbstractEntity
      * @throws NotSupportedException
      * @throws UnexpectedDataException
      */
-    public static function create(array $data)
+    public static function create($data)
     {
         $endpoint = static::endpoint(EndpointType::CREATE);
         $entity = static::make($data);
@@ -253,7 +253,7 @@ abstract class AbstractEntity
      * @throws NotSupportedException
      * @internal
      */
-    protected static function endpoint(string $type)
+    protected static function endpoint($type)
     {
         if (!array_key_exists($type, static::$endpoint)) {
             $class = static::class;
