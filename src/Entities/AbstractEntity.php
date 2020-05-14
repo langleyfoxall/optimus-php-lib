@@ -183,7 +183,7 @@ abstract class AbstractEntity
         if ($page !== 0) {
             $response = static::forPage($query, $after, $page);
 
-            return $response->convertToMany(static::class);
+            return [$response->convertToMany(static::class), $response->lastPage()];
         }
 
         $page = 1;
