@@ -38,6 +38,7 @@
     * [List](./docs/lib/actions/list.md)
     * [Details](./docs/lib/actions/details.md)
     * [Create](./docs/lib/actions/create.md)
+    * [Refresh](./docs/lib/actions/refresh.md)
   * [Entities](./docs/lib/entities.md)
     * [Categories](./docs/lib/entities/categories.md)
     * [Products](./docs/lib/entities/products.md)
