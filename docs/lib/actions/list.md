@@ -35,3 +35,9 @@ Expected arguments:
 
 <br />
 <br />
+
+When a `page` is passed then an array is returned. The first element being the current
+dataset and the second element being the last page.
+
+If no `page` is passed then the library loops through all available pages and returns
+the whole collected dataset at the end.
