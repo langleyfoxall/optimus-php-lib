@@ -1,5 +1,5 @@
 {
-    "name": "optimus/php-lib",
+    "name": "optimus-directory/php-lib",
     "authors": [
         {
             "name": "Dexter Marks-Barber",
@@ -9,8 +9,7 @@
     "minimum-stability": "stable",
     "require": {
         "guzzlehttp/guzzle": "^6.5",
-        "ext-json": "*",
-        "vlucas/phpdotenv": "^4.1"
+        "ext-json": "*"
     },
     "autoload": {
         "psr-4": {
