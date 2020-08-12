@@ -195,7 +195,7 @@ class Request
         $baseUri = substr($baseUri, strlen($baseUri) - 1) === '/' ? substr($baseUri, 0, -1) : $baseUri;
 
         // Add suffix
-        $baseUri = substr($baseUri, strlen($baseUri) - 1) !== '/api' ? $baseUri . '/api' : $baseUri;
+        $baseUri = substr($baseUri, strlen($baseUri) - 4) !== '/api' ? $baseUri . '/api' : $baseUri;
 
         return $baseUri . $endpoint;
     }
