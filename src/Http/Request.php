@@ -246,18 +246,14 @@ class Request
             }
 
             if (is_array($value)) {
-                $tmp = array_merge(
-                    $tmp,
-                    $this->convertData($value, $key)
-                );
+                array_push($tmp, ...$this->convertData($value, $key));
 
                 continue;
             }
 
             if (is_a($value, File::class)) {
-
                 /** @var File $value */
-                $tmp[$key] = [
+                $tmp[] = [
                     'name'     => $key,
                     'contents' => $value->content(),
                     'filename' => $value->filename(),
@@ -267,10 +263,10 @@ class Request
             }
 
             if (is_a($value, AbstractEntity::class)) {
-                $tmp = array_merge(
+                array_push(
                     $tmp,
-                    $this->convertData($value->getAttributes(), $key),
-                    $this->convertData($value->getRelations(), $key)
+                    ...$this->convertData($value->getAttributes(), $key),
+                    ...$this->convertData($value->getRelations(), $key)
                 );
 
                 continue;
