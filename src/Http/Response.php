@@ -111,7 +111,7 @@ class Response
     {
         $data = $this->data();
 
-        if (is_null($data) || empty($data)) {
+        if (empty($data)) {
             return [];
         }
 

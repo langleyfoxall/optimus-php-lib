@@ -72,6 +72,17 @@ abstract class AbstractEntity
     }
 
     /**
+     * Check if data is set.
+     *
+     * @param string $name
+     * @return bool
+     */
+    public function __isset($name)
+    {
+        return isset($this->data[$name]) || isset($this->relations[$name]);
+    }
+
+    /**
      * Get all attributes.
      *
      * @return array
@@ -194,7 +205,7 @@ abstract class AbstractEntity
             $response = static::forPage($query, $after, $page);
             $lastPage = $response->lastPage();
 
-            $out = array_merge($out, $response->convertToMany(static::class));
+            array_push($out, ...$response->convertToMany(static::class));
 
             $page++;
         }
