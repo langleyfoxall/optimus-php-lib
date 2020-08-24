@@ -27,11 +27,12 @@ type you can statically call the `all` method on supported entities:
 
 Expected arguments:
 
-| Key     | Required | Type      | Description                                      |
-|---------|----------|-----------|--------------------------------------------------|
-| `query` | false    | string    | A fuzzy search to filter down entities           |
-| `after` | false    | timestamp | A timestamp to list entities updated after       |
-| `page`  | false    | int       | The page number to load the current results from |
+| Key       | Required | Type      | Description                                                                   |
+|-----------|----------|-----------|-------------------------------------------------------------------------------|
+| `query`   | false    | string    | A fuzzy search to filter down entities                                        |
+| `after`   | false    | timestamp | A Unix timestamp to list entities updated after                               |
+| `page`    | false    | int       | The page number to load the current results from                              |
+| `perPage` | false    | int       | The number of results per page to fetch. Defaults to 15 and is limited to 100 |
 
 <br />
 <br />

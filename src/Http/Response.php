@@ -139,7 +139,7 @@ class Response
             throw new UnexpectedDataException;
         }
 
-        return call_user_func_array([$entity, 'make'], [$data]);
+        return call_user_func([$entity, 'make'], $data);
     }
 
     /**
