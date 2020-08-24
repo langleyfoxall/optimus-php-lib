@@ -184,7 +184,7 @@ abstract class AbstractEntity
      *
      * @param string|null $query
      * @param int|null    $after
-     * @param int|null    $page
+     * @param int         $page
      * @param int|null    $perPage
      * @return array|AbstractEntity[]
      * @throws NotSupportedException
@@ -215,7 +215,7 @@ abstract class AbstractEntity
      *
      * @param string|null $query
      * @param int|null    $after
-     * @param int|null    $page
+     * @param int         $page
      * @param int|null    $perPage
      * @return array|AbstractEntity[]
      * @throws NotSupportedException
@@ -244,11 +244,11 @@ abstract class AbstractEntity
     /**
      * Get results for a paginated dataset.
      *
-     * @param string   $endpoint
-     * @param string   $query
-     * @param string   $after
-     * @param int      $page
-     * @param int|null $perPage
+     * @param string      $endpoint
+     * @param string|null $query
+     * @param int|null    $after
+     * @param int         $page
+     * @param int|null    $perPage
      * @return Response
      * @internal
      */
