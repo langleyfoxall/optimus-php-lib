@@ -4,6 +4,7 @@ namespace Optimus\Entities;
 
 /**
  * @see Product
+ * @property-read int $id
  * @property-read string $thumbnail
  * @property-read string $url
  * @property-read int $updated_at Unix timestamp
