@@ -3,6 +3,8 @@
 namespace Optimus\Entities;
 
 use Optimus\Constants\EndpointType;
+use Optimus\Exceptions\NotSupportedException;
+use Optimus\Exceptions\UnexpectedDataException;
 
 /**
  * @property-read int        $id
@@ -39,8 +41,9 @@ class Product extends AbstractEntity
 {
     /** @var string[] $endpoint */
     protected static $endpoint = [
-        EndpointType::ALL     => '/products',
-        EndpointType::DETAILS => '/products/{id}',
+        EndpointType::ALL           => '/products',
+        EndpointType::DETAILED_ALL  => '/products/detailed',
+        EndpointType::DETAILS       => '/products/{id}',
     ];
 
     /**

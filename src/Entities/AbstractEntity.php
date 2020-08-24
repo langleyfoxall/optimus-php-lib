@@ -119,8 +119,8 @@ abstract class AbstractEntity
     /**
      * Set a relation.
      *
-     * @param $name
-     * @param $value
+     * @param string $name
+     * @param mixed $value
      * @return $this
      */
     public function setRelations($name, $value)
@@ -136,10 +136,10 @@ abstract class AbstractEntity
 
                     // Map data to relation entity
                     $value = array_map(function ($value) use ($class) {
-                        return call_user_func_array([$class, 'make'], [$value]);
+                        return call_user_func([$class, 'make'], $value);
                     }, $value);
                 } else {
-                    $value = call_user_func_array([$class, 'make'], [$value]);
+                    $value = call_user_func([$class, 'make'], $value);
                 }
             }
         }
@@ -182,27 +182,114 @@ abstract class AbstractEntity
     /**
      * Get all entities.
      *
-     * @param string $query
-     * @param int    $after
-     * @param int    $page
+     * @param string|null $query
+     * @param int|null    $after
+     * @param int|null    $page
+     * @param int|null    $perPage
      * @return array|AbstractEntity[]
      * @throws NotSupportedException
      * @throws UnexpectedDataException
      */
-    public static function all($query = null, $after = null, $page = 0)
+    public static function all($query = null, $after = null, $page = 0, $perPage = null)
     {
-        if ($page !== 0) {
-            $response = static::forPage($query, $after, $page);
+        $endpoint = static::endpoint(EndpointType::ALL);
+        $isForSpecificPage = $page !== 0;
+
+        if ($isForSpecificPage) {
+            $response = static::forPage(
+                $endpoint,
+                $query,
+                $after,
+                $page,
+                $perPage
+            );
 
             return [$response->convertToMany(static::class), $response->lastPage()];
         }
 
+        return static::fetchResultsFromAllPages($endpoint, $query, $after, $perPage);
+    }
+
+    /**
+     * Get all entities with full details.
+     *
+     * @param string|null $query
+     * @param int|null    $after
+     * @param int|null    $page
+     * @param int|null    $perPage
+     * @return array|AbstractEntity[]
+     * @throws NotSupportedException
+     * @throws UnexpectedDataException
+     */
+    public static function detailedAll($query = null, $after = null, $page = 0, $perPage = null)
+    {
+        $endpoint = static::endpoint(EndpointType::DETAILED_ALL);
+        $isForSpecificPage = $page !== 0;
+
+        if ($isForSpecificPage) {
+            $response = static::forPage(
+                $endpoint,
+                $query,
+                $after,
+                $page,
+                $perPage
+            );
+
+            return [$response->convertToMany(static::class), $response->lastPage()];
+        }
+
+        return static::fetchResultsFromAllPages($endpoint, $query, $after, $perPage);
+    }
+
+    /**
+     * Get results for a paginated dataset.
+     *
+     * @param string   $endpoint
+     * @param string   $query
+     * @param string   $after
+     * @param int      $page
+     * @param int|null $perPage
+     * @return Response
+     * @internal
+     */
+    protected static function forPage($endpoint, $query = null, $after = null, $page = 0, $perPage = null)
+    {
+        $request = new Request;
+
+        $request->endpoint($endpoint);
+        $request->search($query);
+        $request->filter(compact('after', 'perPage'));
+
+        if ($page > 0) {
+            $request->page($page);
+        }
+
+        return $request->load();
+    }
+
+    /**
+     * @param string      $endpoint
+     * @param string|null $query
+     * @param int|null    $after
+     * @param int|null    $perPage
+     * @return array|AbstractEntity[]
+     * @throws UnexpectedDataException
+     */
+    protected static function fetchResultsFromAllPages($endpoint, $query = null, $after = null, $perPage = null)
+    {
         $page = 1;
         $lastPage = 2;
         $out = [];
 
-        while($page <= $lastPage) {
-            $response = static::forPage($query, $after, $page);
+        while ($page <= $lastPage) {
+            $response = static::forPage(
+                $endpoint,
+                $query,
+                $after,
+                $page,
+                $perPage
+            );
+
             $lastPage = $response->lastPage();
 
             array_push($out, ...$response->convertToMany(static::class));
@@ -214,36 +301,10 @@ abstract class AbstractEntity
     }
 
     /**
-     * Get results for a paginated dataset.
-     *
-     * @param string $query
-     * @param string $after
-     * @param int    $page
-     * @return Response
-     * @throws NotSupportedException
-     * @internal
-     */
-    protected static function forPage($query = null, $after = null, $page = 0)
-    {
-        $endpoint = static::endpoint(EndpointType::ALL);
-        $request = new Request;
-
-        $request->endpoint($endpoint);
-        $request->search($query);
-        $request->filter(compact('after'));
-
-        if ($page > 0) {
-            $request->page($page);
-        }
-
-        return $request->load();
-    }
-
-    /**
      * Get a specific entity.
      *
      * @param array|mixed $id
-     * @return AbstractEntity
+     * @return static
      * @throws NotSupportedException
      * @throws UnexpectedDataException
      */
@@ -264,7 +325,7 @@ abstract class AbstractEntity
 
             $endpoint = preg_replace($regex, $ids, $endpoint);
         } else {
-            $endpoint = preg_replace('/\{id\}/', $id, $endpoint);
+            $endpoint = preg_replace('/{id}/', $id, $endpoint);
         }
 
         $request = new Request;
@@ -279,7 +340,7 @@ abstract class AbstractEntity
      * Create a entity.
      *
      * @param array $data
-     * @return AbstractEntity
+     * @return static
      * @throws NotSupportedException
      * @throws UnexpectedDataException
      */
@@ -300,7 +361,7 @@ abstract class AbstractEntity
     /**
      * Refresh the data of an entity.
      *
-     * @return null|AbstractEntity
+     * @return null|static
      * @throws NotSupportedException
      * @throws UnexpectedDataException
      */
