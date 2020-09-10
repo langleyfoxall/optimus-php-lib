@@ -36,6 +36,7 @@ Expected response:
         "id": 1,
         "name": "quis quod nihil",
         "sku": "9100067798573",
+        "catalogue_reference": "PP-12345",
         "thumbnail": "<...>/images\/image-placeholder.svg"
       }
     ],
