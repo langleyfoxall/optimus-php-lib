@@ -3,8 +3,6 @@
 namespace Optimus\Entities;
 
 use Optimus\Constants\EndpointType;
-use Optimus\Exceptions\NotSupportedException;
-use Optimus\Exceptions\UnexpectedDataException;
 
 /**
  * @property-read int        $id
@@ -21,8 +19,9 @@ use Optimus\Exceptions\UnexpectedDataException;
  * @property-read string     $information_web_link
  * @property-read string     $information_web_link_description
  * @property-read string     $information_catalogue_description
- * @property-read string     $information_information_colours
- * @property-read string     $information_information_packaging
+ * @property-read string     $information_colours
+ * @property-read string     $information_packaging
+ * @property-read string     $information_express_delivery
  * @property-read int        $lead_time_standard
  * @property-read int        $lead_time_express
  * @property-read bool       $is_lead_time_express_chargable

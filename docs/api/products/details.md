@@ -83,6 +83,7 @@ Expected response:
     "information_catalogue_description": "Inventore nobis non consequatur voluptatem mollitia vel.",
     "information_colours": "Error aut modi et magnam non.",
     "information_packaging": "Aut magnam qui et voluptas cumque omnis ut rerum.",
+    "information_express_delivery": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "lead_time_standard": 7,
     "lead_time_express": 5,
     "is_lead_time_express_chargable": true,
