@@ -93,7 +93,8 @@ Expected response:
     "meta_title": null,
     "subtitle": null,
     "seo_description": null,
-    "keywords": null
+    "keywords": null,
+    "deleted_at": null
   },
   "meta": null
 }
