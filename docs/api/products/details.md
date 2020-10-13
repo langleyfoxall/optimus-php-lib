@@ -84,6 +84,7 @@ Expected response:
     "information_colours": "Error aut modi et magnam non.",
     "information_packaging": "Aut magnam qui et voluptas cumque omnis ut rerum.",
     "information_express_delivery": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "country_of_origin": "United Kingdom",
     "lead_time_standard": 7,
     "lead_time_express": 5,
     "is_lead_time_express_chargable": true,
