@@ -22,8 +22,9 @@ use Optimus\Constants\EndpointType;
  * @property-read string      $information_colours
  * @property-read string      $information_packaging
  * @property-read string      $information_express_delivery
+ * @property-read string      $country_of_origin
  * @property-read int         $lead_time_standard
- * @property-read int         $lead_time_express
+ * @property-read int|null    $lead_time_express
  * @property-read bool        $is_lead_time_express_chargable
  * @property-read int         $maximum_number_of_colours
  * @property-read string      $slug
